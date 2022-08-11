@@ -149,7 +149,7 @@ const addRole = () => {
         .then((answer) => {
             // console.log(answer.role);
             const sql = `INSERT INTO roles (title, salary) 
-                        VALUES (?,?,?)`;
+                        VALUES (?,?)`;
             const params = [answer.title, answer.salary];
 
             db.query(sql, params, (err, rows) => {
