@@ -128,38 +128,29 @@ const addRole = () => {
     inquirer
         .prompt([
             {
-                type: 'input',
+                type: 'list',
                 name: 'title',
                 message: 'What is your title?',
-                // choices: [
-                //     'Manager',
-                //     'Intern'
-                // ]
-            },
-            {
-                type: 'input',
-                name: 'salary',
-                message: 'What is your salary?',
-                // choices: [
-                //     '100000.00',
-                //     '50000.00'
-                // ]
+                choices: [
+                    'Manager',
+                    'Intern'
+                ]
             },
             {
                 type: 'list',
-                name: 'department_id',
-                message: 'What is your department',
+                name: 'salary',
+                message: 'What is your salary?',
                 choices: [
-                    'Front-end Developer',
-                    'Back-end Developer'
+                    '100000.00',
+                    '50000.00'
                 ]
             }
         ])
         .then((answer) => {
             // console.log(answer.role);
-            const sql = `INSERT INTO roles (title, salary, department_id) 
+            const sql = `INSERT INTO roles (title, salary) 
                         VALUES (?,?,?)`;
-            const params = [answer.title, answer.salary, answer.department_id];
+            const params = [answer.title, answer.salary];
 
             db.query(sql, params, (err, rows) => {
                 if (err) {
