@@ -5,18 +5,18 @@ VALUES
     ('Back-end Developer');
 
 INSERT INTO roles
-    (title, salary)
+    (title, salary, department_id)
 VALUES
-    ('Manager', '100000.00'),
-    ('Intern', '50000.00');
+    ('Manager', '100000.00', 1),
+    ('Intern', '50000.00', 2);
 
 INSERT INTO employee
-    (first_name, last_name)
+    (first_name, last_name, role_id)
 VALUES
-    ('Gabe', 'Perry'),
-    ('Sebastian', 'Fave'),
-    ('Michael', 'Park'),
-    ('Nino', 'Suffoletta'),
-    ('Bernabas', 'Abdeta');
+    ('Gabe', 'Perry', 1),
+    ('Sebastian', 'Fave', 1),
+    ('Michael', 'Park', 2),
+    ('Nino', 'Suffoletta', 2),
+    ('Bernabas', 'Abdeta', NULL);
 
     

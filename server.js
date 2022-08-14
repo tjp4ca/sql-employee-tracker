@@ -29,22 +29,28 @@ const init = () => {
         .then((output) => {
             if(output.options == 'View all departments') {
                 viewAllDepartments();
+
             }
             if(output.options == 'View all roles') {
                 viewAllRoles();
+
             }
             if(output.options == 'View all employees') {
                 viewAllEmployees();
+
             }
             if(output.options == 'Add a department') {
                 addDepartment();
+
             }
             if(output.options == 'Add a role') {
                 console.log('Add a role success')
                 addRole();
+
             }
             if(output.options == 'Add an employee') {
                 addEmployee();
+
             }
             if(output.options == 'Update an employee role') {
                 console.log('Update an employee role success')
@@ -73,7 +79,11 @@ const viewAllDepartments = () => {
 };
 
 const viewAllRoles = () => {
-    const sql = `SELECT * FROM roles`;
+    const sql = `
+        SELECT roles.id, title, salary, department_id, department_name
+        FROM roles
+        LEFT JOIN department ON roles.department_id = department.id
+    `;
 
     db.query(sql, (err, rows) => {
         if (err) {
@@ -86,7 +96,11 @@ const viewAllRoles = () => {
 };
 
 const viewAllEmployees = () => {
-    const sql = `SELECT * FROM employee`;
+    const sql = `
+        SELECT employee.id, first_name, last_name, role_id, title, salary
+        FROM employee 
+        LEFT JOIN roles ON employee.role_id = roles.id
+    `;
 
     db.query(sql, (err, rows) => {
         if (err) {
@@ -118,7 +132,7 @@ const addDepartment = () => {
                     console.log(err);
                 }
                 viewAllDepartments();
-                init();
+
                 // console.table(rows)
             })
         })
@@ -157,7 +171,7 @@ const addRole = () => {
                     console.log(err);
                 }
                 viewAllRoles();
-                init();
+
                 // console.table(rows)
             })
         })
@@ -189,7 +203,7 @@ const addEmployee = () => {
                     console.log(err);
                 }
                 viewAllEmployees();
-                init();
+                // init();
                 // console.table(rows)
             })
         })
